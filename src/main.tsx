@@ -1,10 +1,17 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App.tsx'
-import './index.css'
+import { App } from './App'
+import { makeServer } from './services/makeServer'
+import { GlobalStyle } from './styles/global';
+import { GenresMoviesProvider } from './hooks/useGenresMovies';
+
+makeServer();
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <App />
+    <GenresMoviesProvider>
+      <App />
+    </GenresMoviesProvider>
+    <GlobalStyle />
   </React.StrictMode>,
 )
