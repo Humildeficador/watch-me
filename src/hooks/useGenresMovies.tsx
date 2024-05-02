@@ -38,8 +38,8 @@ interface GenresMoviesProviderProps {
 interface GenresMoviesContextDataType {
     genresList: Array<GenreProps>
     moviesList: Array<MoviesProps>
-    handleActiveGenre: (id: number) => void
-    activeGenre: number
+    handleActiveGenre: (genre: GenreProps) => void
+    activeGenre: GenreProps
 }
 
 const GenresMoviesContext = createContext<GenresMoviesContextDataType>(
@@ -49,7 +49,13 @@ const GenresMoviesContext = createContext<GenresMoviesContextDataType>(
 export function GenresMoviesProvider({ children }: GenresMoviesProviderProps) {
     const [moviesList, setMoviesList] = useState<MoviesProps[]>([]);
     const [genresList, setGenresList] = useState<GenreProps[]>([]);
-    const [activeGenre, setActiveGenre] = useState(1);
+    const [activeGenre, setActiveGenre] = useState<GenreProps>(
+        {
+            "id": 1,
+            "name": "action",
+            "title": "Ação"
+        }
+    );
     const [filteredMovies, setFilteredMovies] = useState<MoviesProps[]>([]);
 
     useEffect(() => {
@@ -59,15 +65,15 @@ export function GenresMoviesProvider({ children }: GenresMoviesProviderProps) {
             .then(response => setMoviesList(response.data.movies))
     }, [])
 
-    function handleActiveGenre(id: number) {
-        setActiveGenre(id)
+    function handleActiveGenre(genre: GenreProps) {
+        setActiveGenre(genre)
     }
 
     useEffect(() => {
         setFilteredMovies(() => (
-            moviesList.filter(movie => movie.Genre_id == activeGenre)
+            moviesList.filter(movie => movie.Genre_id == activeGenre.id)
         ))
-    }, [moviesList, activeGenre])
+    }, [moviesList, activeGenre, genresList])
 
     return (
         <GenresMoviesContext.Provider value={{

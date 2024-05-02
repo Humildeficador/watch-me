@@ -3,6 +3,14 @@ import styled from "styled-components";
 export const MainContainer = styled.main`
     padding: 3rem 14rem;
     width: 100%;
+
+    h1 {
+        margin-bottom: 2rem;
+
+        span {
+            color: var(--white);
+        }
+    }
 `
 
 export const MainContent = styled.div`
@@ -41,7 +49,7 @@ export const MovieCard = styled.div`
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
-        padding: 0.5rem 1.5rem;
+        padding: 1rem 1.5rem;
 
         .movie-title {
             font-weight: 600;
@@ -57,6 +65,9 @@ export const MovieCard = styled.div`
             .movie-rating, .movie-duraction {
                 font-size: 1.1rem;
                 font-weight: 600;
+                display: flex;
+                gap: .25em;
+                align-items: center;
             }
         }
     }

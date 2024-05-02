@@ -15,8 +15,8 @@ export function Header() {
                     return (
                         <GenreButton
                             key={genre.id}
-                            onClick={() => handleActiveGenre(genre.id)}
-                            $isActive={activeGenre == genre.id}
+                            onClick={() => handleActiveGenre(genre)}
+                            $isActive={activeGenre.id == genre.id}
                         >
                             {genre.title}
                         </GenreButton>

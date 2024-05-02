@@ -5,7 +5,7 @@ export const SidebarContainer = styled.header`
     span {
         color: var(--yellow);
         font-size: 3rem;
-        font-weight: 500;
+        font-weight: 600;
 
         margin-bottom: 4.5rem;
         span {

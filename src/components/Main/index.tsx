@@ -1,12 +1,16 @@
 import { useGenresMovies } from "../../hooks/useGenresMovies";
 import { MainContainer, MainContent, MovieCard } from "./styles";
+import { Star, Clock } from 'lucide-react'
 
 export function Main() {
-    const { moviesList } = useGenresMovies()
+    const { moviesList, activeGenre } = useGenresMovies()
 
     return (
         <MainContainer>
-            <h1>Categoria: Ação</h1>
+            <h1>
+                Categoria:
+                <span> {activeGenre.title}</span>
+            </h1>
             <MainContent>
                 {moviesList.map(movie => {
                     return (
@@ -24,10 +28,12 @@ export function Main() {
                                     <div
                                         className="movie-rating"
                                     >
+                                        <Star color="#FAE800"/>
                                         {movie.Ratings[0].Value}
                                     </div>
 
                                     <div className="movie-duraction">
+                                        <Clock color="#FAE800"/>
                                         {movie.Runtime}
                                     </div>
                                 </div>
